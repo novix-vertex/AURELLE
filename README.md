@@ -1,2 +1,2 @@
 # AURELLE
-Aurelle: Defined by Elegance - an ecommerce site project having both fronend and backend
+Aurelle: Defined by Elegance - a premium ecommerce site project having both fronend and backend
