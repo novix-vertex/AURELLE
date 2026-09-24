@@ -1,16 +1,16 @@
 import express from "express"
+import authRoutes from "./routes/auth.routes.js"
 
 const app = express();
 app.use(express.json());
 
-/**
- * For testing purpose to check if server is responding or not
- */
 app.get("/", (req, res) => {
     res.json({
         message: "Welcome to AURELLE"
     });
 })
+
+app.use("/api/auth", authRoutes);
 
 
 export default app;
