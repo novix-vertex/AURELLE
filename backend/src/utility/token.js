@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken"
 import { config } from "../config/config.js"
+import bcrypt from "bcryptjs";
 
 export const generateAccessToken = (id) => {
 
@@ -24,4 +25,8 @@ export const genereateRefreshToken = (id) => {
         }
     );
 
+}
+
+export const hashRefreshToken = async (refreshToken) => {
+    return await bcrypt.hash(refreshToken, 10);
 }
