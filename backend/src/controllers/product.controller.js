@@ -57,3 +57,52 @@ export const createProductController = async (req, res) => {
     }
 
 }
+
+export const getAllProductsController = async (req, res) => {
+    try {
+        const products = await productModel.find();
+        console.log(products);
+        return res.status(200).json({
+            message: "Products fetched successfully",
+            data: {
+                products
+            }
+        })
+    } catch (error) {
+        console.error("Get All Products Error:", error);
+        return res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
+export const getProductByIdController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) {
+            return res.status(400).json({
+                message: "Product id required"
+            });
+        }
+        const product = await productModel.findById(id);
+
+        if (!product) {
+            return res.status(404).json({
+                message: "Product not found"
+            });
+        }
+
+        return res.status(200).json({
+            message: "Product found successfully",
+            data: {
+                product
+            }
+        })
+
+    } catch (error) {
+        console.error("Get Product By Id Error:", error);
+        return res.status(500).json({
+            message: error.message
+        })
+    }
+}
