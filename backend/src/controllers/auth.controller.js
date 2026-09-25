@@ -110,12 +110,32 @@ export const loginController = async (req, res) => {
 }
 
 export const getMeController = async (req, res) => {
-    res.json({
-        message: "Authenticated",
-        data: {
-            user: req.user
+
+    try {
+
+        const user = await userModel.findById(req.user.id);
+        if(!user){
+            return res.status(404).json({
+                message:"User not found"
+            })
         }
-    })
+        return res.status(200).json({
+            message: "Authenticated",
+            data: {
+                user: {
+                    id:user._id,
+                    name:user.name,
+                    email:user.email
+                }
+            }
+        })
+    } catch (error) {
+        console.log("Get Me Error:", error);
+        res.status(500).json({
+            message: error.message
+        })
+    }
+
 }
 
 export const refreshTokenController = async (req, res) => {
