@@ -2,6 +2,7 @@ import bcrypt from "bcryptjs"
 import userModel from "../models/user.model.js"
 import { generateAccessToken, genereateRefreshToken } from "../utility/token.js";
 import { config } from "../config/config.js"
+
 export const registerController = async (req, res) => {
     try {
         const { name, email, password, confirmPassword } = req.body;
@@ -104,4 +105,13 @@ export const loginController = async (req, res) => {
             message: error.message
         })
     }
+}
+
+export const getMeController = async (req, res) => {
+    res.json({
+        message: "Authenticated",
+        data: {
+            user: req.user
+        }
+    })
 }
