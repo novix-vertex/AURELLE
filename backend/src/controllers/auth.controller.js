@@ -118,30 +118,30 @@ export const getMeController = async (req, res) => {
     })
 }
 
-export const refreshTokenController = async (req,res)=>{
-    try{
+export const refreshTokenController = async (req, res) => {
+    try {
         const token = req.cookies.refreshToken;
 
-        if(!token){
-            res.status(401).json({
-                message:"Refresh token is required"
+        if (!token) {
+            return res.status(401).json({
+                message: "Refresh token is required"
             })
         }
 
-        const decoded = jwt.verify(token,config.REFRESH_TOKEN_SECRET);
+        const decoded = jwt.verify(token, config.REFRESH_TOKEN_SECRET);
         const user = await userModel.findById(decoded.id).select("+refreshTokenHash");
-      
-        if(!user || !user.refreshTokenHash){
+
+        if (!user || !user.refreshTokenHash) {
             return res.status(401).json({
-                message:"Invalid refresh token"
+                message: "Invalid refresh token"
             });
         }
-        
-        const isTokenValid = await bcrypt.compare(token,user.refreshTokenHash);
-        
-        if(!isTokenValid){
+
+        const isTokenValid = await bcrypt.compare(token, user.refreshTokenHash);
+
+        if (!isTokenValid) {
             return res.status(401).json({
-                message:"Invalid refresh token"
+                message: "Invalid refresh token"
             });
         }
 
@@ -159,13 +159,65 @@ export const refreshTokenController = async (req,res)=>{
 
 
         return res.status(200).json({
-            accessToken:newAccessToken
+            accessToken: newAccessToken
         })
 
-    }catch(error){
-        console.error("Refresh Token:",error);
+    } catch (error) {
+        console.error("Refresh Token Error:", error);
         res.status(500).json({
-            message:"Refresh token is expired"
+            message: "Refresh token is expired"
+        })
+    }
+}
+
+export const logoutController = async (req, res) => {
+    try {
+        const token = req.cookies.refreshToken;
+        if (!token) {
+            return res.status(401).json({
+                message: "Refresh token required"
+            });
+        }
+
+        const decoded = jwt.verify(
+            token,
+            config.REFRESH_TOKEN_SECRET
+        );
+
+        const user = await userModel.findById(decoded.id).select("+refreshTokenHash");
+
+        if (!user || !user.refreshTokenHash) {
+            return res.status(401).json({
+                message: "Invalid refresh token"
+            });
+        }
+
+        const isTokenValid = await bcrypt.compare(token, user.refreshTokenHash);
+
+        if (!isTokenValid) {
+            return res.status(401).json({
+                message: "Invalid refresh token"
+            });
+        }
+
+
+        await userModel.findByIdAndUpdate(user._id, {
+            refreshTokenHash: null
+        });
+
+        res.clearCookie("refreshToken", {
+            httpOnly: true
+        });
+
+        return res.status(200).json({
+            message: "User logged out successfully."
+        })
+
+
+    } catch (error) {
+        console.error("Logout Error", error);
+        res.status(500).json({
+            message: error.message
         })
     }
 }
