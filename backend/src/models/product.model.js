@@ -8,7 +8,16 @@ import mongoose from "mongoose"
     "category": "tshirts",
     "size": "M",
     "stock": 25,
-    "image": "",
+    "images": [
+        {
+            "url": "",
+            "fileId": ""
+        },
+        {
+            "url": "",
+            "fileId": ""
+        }
+    ],
     "createdAt": "",
     "updatedAt": ""
 }
@@ -39,10 +48,18 @@ const productSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    image: {
-        type: String,
-        deafult: ""
-    }
+    images:[
+        {
+            url:{
+                type:String,
+                default:""
+            },
+            fileId:{
+                type:String,
+                default:""
+            }
+        }
+    ]
 }, {
     timestamps: true
 });
