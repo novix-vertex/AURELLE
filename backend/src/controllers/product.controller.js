@@ -106,3 +106,76 @@ export const getProductByIdController = async (req, res) => {
         })
     }
 }
+
+export const updateProductByIdController = async (req, res) => {
+    let uploadedImages = [];
+
+    try {
+        const { id } = req.params;
+
+        const { name, description, price, category, size, stock } = req.body;
+        const files = req.files || [];
+
+        const product = await productModel.findById(id);
+
+        if (!product) {
+            return res.status(404).json({
+                message: "Product not found"
+            });
+        }
+
+        if (!name || !description || !price || !category || !size || stock === undefined) {
+            return res.status(400).json({
+                message: "All product fields are required"
+            });
+        }
+        if (files.length > 0) {
+            const folder = `/Aurelle/products/${product._id}`;
+
+            for (const file of files) {
+                const result = await imagekit.files.upload({
+                    file: await toFile(
+                        file.buffer,
+                        file.originalname
+                    ),
+                    fileName: "img-" + Date.now() + file.originalname,
+                    folder
+                });
+
+                uploadedImages.push({
+                    url: result.url,
+                    fileId: result.fileId
+                });
+            }
+
+            for (const image of product.images) {
+                try {
+                    await imagekit.files.delete(image.fileId);
+                } catch (error) {
+                    console.error(error.message);
+                }
+            }
+            product.images = uploadedImages;
+
+        }
+
+        product.name = name;
+        product.description = description;
+        product.price = price;
+        product.category = category;
+        product.size = size;
+        product.stock = stock;
+
+        await product.save();
+
+        return res.status(200).json({
+            message: "Product updated successfully",
+            data: { product }
+        });
+    } catch (error) {
+        console.error("Update Product Error:", error);
+        return res.status(500).json({
+            message: error.message
+        })
+    }
+}
