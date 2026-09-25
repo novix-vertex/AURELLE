@@ -41,7 +41,7 @@ export const createProductController = async (req, res) => {
             });
         }
 
-        const updatedProduct = await productModel.findByIdAndUpdate(product._id, { images: uploadedImages }, { new: true });
+        const updatedProduct = await productModel.findByIdAndUpdate(product._id, { images: uploadedImages }, { returnDocument: "after" });
 
         return res.status(201).json({
             message: "Product created successfully",
