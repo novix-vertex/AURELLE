@@ -1,6 +1,7 @@
-import userModel from "../models/user.model.js"
 import bcrypt from "bcryptjs"
-
+import userModel from "../models/user.model.js"
+import { generateAccessToken, genereateRefreshToken } from "../utility/token.js";
+import { config } from "../config/config.js"
 export const registerController = async (req, res) => {
     try {
         const { name, email, password, confirmPassword } = req.body;
@@ -75,8 +76,20 @@ export const loginController = async (req, res) => {
             });
         }
 
+        const accessToken = generateAccessToken(user._id);
+        const refreshToken = genereateRefreshToken(user._id);
+
+        user.refreshTokenHash = refreshToken;
+        user.save();
+
+        res.cookie("refreshToken", refreshToken, {
+            httpOnly: true,
+            maxAge: config.ACCESS_TOKEN_EXPIRES_IN * 24 * 60 * 60 * 1000
+        });
+
         return res.status(200).json({
             message: "User login successfully.",
+            accessToken,
             data: {
                 user: {
                     id: user._id,
