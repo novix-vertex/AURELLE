@@ -8,13 +8,6 @@ export const registerController = async (req, res) => {
     try {
         const { name, email, password, confirmPassword } = req.body;
 
-
-        if (password != confirmPassword) {
-            return res.status(400).json({
-                message: "Passord and confirm password do not matched"
-            });
-        }
-
         const isUserExisted = await userModel.findOne({ email });
 
         if (isUserExisted) {
@@ -103,18 +96,18 @@ export const getMeController = async (req, res) => {
     try {
 
         const user = await userModel.findById(req.user.id);
-        if(!user){
+        if (!user) {
             return res.status(404).json({
-                message:"User not found"
+                message: "User not found"
             })
         }
         return res.status(200).json({
             message: "Authenticated",
             data: {
                 user: {
-                    id:user._id,
-                    name:user.name,
-                    email:user.email
+                    id: user._id,
+                    name: user.name,
+                    email: user.email
                 }
             }
         })

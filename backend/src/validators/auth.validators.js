@@ -18,7 +18,13 @@ export const registerValidator = [
 
     body("confirmPassword")
         .trim()
-        .notEmpty().withMessage("Confirm Password is required"),
+        .notEmpty().withMessage("Confirm Password is required").bail()
+        .custom((value, { req }) => {
+            if (value !== req.body.password) {
+                throw new Error("Password and Confirm Password are not matching")
+            }
+            return true;
+        })
 ];
 
 export const loginValidator = [
@@ -26,7 +32,7 @@ export const loginValidator = [
         .trim()
         .notEmpty().withMessage("Email is required").bail()
         .isEmail().withMessage("Please provide a valid email"),
-        
+
     body("password")
         .trim()
         .notEmpty().withMessage("Password is required").bail()
