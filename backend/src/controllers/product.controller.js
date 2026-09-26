@@ -10,12 +10,6 @@ export const createProductController = async (req, res) => {
         const { name, description, price, category, size, stock } = req.body;
         const files = req.files || [];
 
-        if (!name || !description || !price || !category || !size || stock === undefined) {
-            return res.status(400).json({
-                message: "All product fields are required"
-            });
-        }
-
         product = await productModel.create({
             name,
             description,
@@ -124,11 +118,6 @@ export const updateProductByIdController = async (req, res) => {
             });
         }
 
-        if (!name || !description || !price || !category || !size || stock === undefined) {
-            return res.status(400).json({
-                message: "All product fields are required"
-            });
-        }
         if (files.length > 0) {
             const folder = `/Aurelle/products/${product._id}`;
 
