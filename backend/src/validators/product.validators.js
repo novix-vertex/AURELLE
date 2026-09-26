@@ -1,4 +1,4 @@
-import { body } from "express-validator"
+import { body, param } from "express-validator"
 
 export const productValidator = [
     body("name")
@@ -24,4 +24,11 @@ export const productValidator = [
     body("stock")
         .notEmpty().withMessage("Stock is required").bail()
         .isInt({ min: 0 }).withMessage("Stock must be a positive number")
+];
+
+export const productIdValidator = [
+
+    param("id")
+        .trim()
+        .isMongoId().withMessage("Invaid product id")
 ];
