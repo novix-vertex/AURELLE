@@ -179,3 +179,38 @@ export const updateProductByIdController = async (req, res) => {
         })
     }
 }
+
+export const deleteProductByIdController = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const product = await productModel.findById(id);
+
+        if (!product) {
+            return res.status(404).json({
+                message: "Product not found"
+            });
+        }
+
+        const folderPath = `/Aurelle/products/${product._id}`;
+        try {
+            await imagekit.folders.delete({
+                folderPath
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
+
+        await productModel.findByIdAndDelete(id);
+
+        return res.status(200).json({
+            message: "Product deleted successfully"
+        })
+
+    } catch (error) {
+        console.error("Delete Product By Id Error:", error);
+        return res.status(500).json({
+            message: error.message
+        })
+    }
+}
