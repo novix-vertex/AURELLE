@@ -20,3 +20,14 @@ export const registerValidator = [
         .trim()
         .notEmpty().withMessage("Confirm Password is required"),
 ];
+
+export const loginValidator = [
+    body("email")
+        .trim()
+        .notEmpty().withMessage("Email is required").bail()
+        .isEmail().withMessage("Please provide a valid email"),
+        
+    body("password")
+        .trim()
+        .notEmpty().withMessage("Password is required").bail()
+];

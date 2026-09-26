@@ -15,12 +15,6 @@ export const registerController = async (req, res) => {
             });
         }
 
-        if (!name || !email || !password || !confirmPassword) {
-            return res.status(400).json({
-                message: "All fields are required"
-            });
-        }
-
         const isUserExisted = await userModel.findOne({ email });
 
         if (isUserExisted) {
@@ -59,11 +53,6 @@ export const loginController = async (req, res) => {
 
         const { email, password } = req.body;
 
-        if (!email || !password) {
-            return res.status(400).json({
-                message: "All fields are required"
-            });
-        }
         const user = await userModel.findOne({ email }).select("+passwordHash");
         if (!user) {
             return res.status(401).json({
