@@ -48,7 +48,7 @@ export const registerController = async (req, res) => {
 
     } catch (error) {
         console.error("Registration Error:", error);
-        res.status(500).json({
+        return res.status(500).json({
             message: error.message
         })
     }
@@ -103,7 +103,7 @@ export const loginController = async (req, res) => {
         })
     } catch (error) {
         console.error("Login Error:", error);
-        res.status(500).json({
+        return res.status(500).json({
             message: error.message
         })
     }
@@ -131,7 +131,7 @@ export const getMeController = async (req, res) => {
         })
     } catch (error) {
         console.log("Get Me Error:", error);
-        res.status(500).json({
+        return res.status(500).json({
             message: error.message
         })
     }
@@ -184,7 +184,7 @@ export const refreshTokenController = async (req, res) => {
 
     } catch (error) {
         console.error("Refresh Token Error:", error);
-        res.status(500).json({
+        return res.status(500).json({
             message: "Refresh token is expired"
         })
     }
@@ -236,7 +236,7 @@ export const logoutController = async (req, res) => {
 
     } catch (error) {
         console.error("Logout Error", error);
-        res.status(500).json({
+        return res.status(500).json({
             message: error.message
         })
     }
