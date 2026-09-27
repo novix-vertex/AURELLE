@@ -23,3 +23,9 @@ export const getMe = (accessToken) => {
         }
     });
 };
+
+export const logoutUser = () => {
+    return api.post("/auth/logout", {}, {
+        withCredentials: true
+    });
+};

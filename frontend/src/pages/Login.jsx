@@ -2,19 +2,22 @@ import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { loginUser } from "../api/authApi"
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router";
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { handleLogin } = useAuth();
+    const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         try {
             const response = await loginUser(data);
-            console.log("Login Response", response.data);
             const { accessToken } = response.data;
             const { user } = response.data.data;
             handleLogin(user, accessToken);
 
             toast.success("Login successful");
+            navigate("/profile");
+
         } catch (error) {
             toast.error(
                 error.response?.data?.message || "Login failed"

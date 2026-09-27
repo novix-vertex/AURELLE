@@ -1,14 +1,17 @@
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast";
 import { registerUser } from "../api/authApi";
+import { useNavigate } from "react-router";
 
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
         try {
             const response = await registerUser(data);
             toast.success(response.data.message);
+            navigate("/login");
         } catch (error) {
             toast.error(
                 error.response?.data?.message || "Registration failed"

@@ -1,13 +1,44 @@
+import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
 const Profile = () => {
 
-    const { user } = useAuth();
+    const { user, handleLogout } = useAuth();
+    const navigate = useNavigate();
+
+    const logout = async () => {
+        await handleLogout();
+        navigate("/login");
+    };
 
     return (
-        <div>
-            <h1>Welcome, {user.name}</h1>
-            <p>{user.email}</p>
+        <div className="profile-page">
+
+            <div className="profile-content">
+
+                <span className="profile-label">
+                    AURELLE
+                </span>
+
+                <h1 className="profile-title">
+                    Welcome, {user.name}
+                </h1>
+
+                <div className="profile-divider"></div>
+
+                <p className="profile-email">
+                    {user.email}
+                </p>
+
+                <button
+                    className="profile-logout"
+                    onClick={logout}
+                >
+                    Logout
+                </button>
+
+            </div>
+
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { getMe, refreshAccessToken } from "../api/authApi";
+import { getMe, logoutUser, refreshAccessToken } from "../api/authApi";
 
 const AuthContext = createContext();
 
@@ -39,7 +39,19 @@ const AuthProvider = ({ children }) => {
 
     }, []);
 
-    return (<AuthContext.Provider value={{ user, accessToken, isLoading, handleLogin }}>
+    const handleLogout = async () => {
+        try {
+            await logoutUser();
+
+            setUser(null);
+            setAccessToken(null);
+
+        } catch (error) {
+            console.error("Logout failed Error:", error);
+        }
+    };
+
+    return (<AuthContext.Provider value={{ user, accessToken, isLoading, handleLogin, handleLogout }}>
         {children}
     </AuthContext.Provider>);
 }

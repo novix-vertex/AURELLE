@@ -536,3 +536,64 @@ nav a:hover {
   color: var(--black);
   cursor: pointer;
 }
+
+.profile-page {
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  background: var(--black);
+}
+
+.profile-content {
+  width: 100%;
+  max-width: 35rem;
+  padding: 3rem;
+  border: 1px solid var(--burgundy-border);
+  background: var(--burgundy);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.profile-label {
+  color: var(--antique-gold);
+  font-size: 0.8rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+}
+
+.profile-title {
+  color: var(--ivory);
+  font-size: 2.2rem;
+  font-weight: 400;
+}
+
+.profile-email {
+  color: var(--champagne);
+  font-size: 1rem;
+}
+
+.profile-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--burgundy-border);
+}
+
+.profile-logout {
+  padding: 0.8rem 2rem;
+  border: 1px solid var(--antique-gold);
+  background: transparent;
+  color: var(--antique-gold);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.profile-logout:hover {
+  background: var(--antique-gold);
+  color: var(--black);
+}
