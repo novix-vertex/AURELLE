@@ -17,7 +17,7 @@ export const refreshAccessToken = () => {
 };
 
 export const getMe = (accessToken) => {
-    return api.get("/auth/get-me", {
+    return api.get("/auth/me", {
         headers: {
             Authorization: `Bearer ${accessToken}`
         }
