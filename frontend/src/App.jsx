@@ -1,14 +1,8 @@
-import Featured from "./components/Featured"
-import Hero from "./components/Hero"
-import Navbar from "./components/Navbar"
+import { Outlet } from "react-router"
 
 const App = () => {
     return (
-        <div className="home">
-            <Navbar />
-            <Hero />
-            <Featured />
-        </div>
+        <Outlet />
     )
 }
 
