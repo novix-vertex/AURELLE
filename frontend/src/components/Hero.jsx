@@ -1,3 +1,4 @@
+import { NavLink } from "react-router"
 const Hero = () => {
     return (
         <main className="hero">
@@ -13,7 +14,7 @@ const Hero = () => {
                     simplicity, confidence and refined style.
                 </p>
 
-                <button className="explore-btn">Explore Collection</button>
+                <NavLink className="explore-btn" to="/products">Explore Collection</NavLink>
             </div>
         </main>
     )
