@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { getProducts } from "../api/productApi"
 import Product from "../components/Product";
-
+import toast from "react-hot-toast"
 const Products = () => {
     const [products, setProducts] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -14,12 +14,25 @@ const Products = () => {
                 setProducts(response.data.data.products);
 
             } catch (error) {
-                console.error(error);
+                 toast.error(
+            error.response?.data?.message || "Failed to load products"
+        );
+            } finally {
+                setIsLoading(false);
             }
         }
         fetchProducts();
 
     }, []);
+    if (isLoading) {
+        return (
+            <div className="loading">
+                <span className="loading-text">
+                    Loading...
+                </span>
+            </div>
+        );
+    }
     return (
         <div className="products-page">
 
