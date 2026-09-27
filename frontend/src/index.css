@@ -108,3 +108,31 @@ nav a:hover {
   line-height: 1;
 }
 
+.tagline {
+  margin-top: 1.5rem;
+  color: var(--champagne);
+  font-size: 1.3rem;
+  letter-spacing: 0.2rem;
+}
+
+.description {
+  max-width: 500px;
+  margin: 2rem auto;
+  color: var(--taupe);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.explore-btn {
+  padding: 0.9rem 2rem;
+  border: none;
+  background: var(--antique-gold);
+  color: var(--black);
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.explore-btn:hover {
+  background: var(--champagne);
+}
