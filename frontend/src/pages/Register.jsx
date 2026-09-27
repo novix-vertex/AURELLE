@@ -1,12 +1,20 @@
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast";
+import { registerUser } from "../api/authApi";
 
 const Register = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
-    }
+    const onSubmit = async (data) => {
+        try {
+            const response = await registerUser(data);
+            toast.success(response.data.message);
+        } catch (error) {
+            toast.error(
+                error.response?.data?.message || "Registration failed"
+            );
+        }
+    };
 
     const onError = (errors) => {
         const firstError = Object.values(errors)[0];
