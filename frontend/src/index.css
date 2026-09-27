@@ -34,3 +34,39 @@ body {
 a {
   text-decoration: none;
 }
+
+.home {
+  min-height: 100vh;
+}
+
+.navbar {
+  height: 80px;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--burgundy-border);
+}
+
+.logo {
+  font-size: 1.6rem;
+  letter-spacing: 0.2rem;
+}
+
+nav {
+  display: flex;
+  gap: 2rem
+}
+
+nav a {
+  color: var(--champagne);
+  font-size: 0.9rem;
+}
+
+.shop-now-btn {
+  padding: 0.7rem 1.3rem;
+  background: transparent;
+  border: 1px solid var(--antique-gold);
+  color: var(--antique-gold);
+  cursor: pointer;
+}
