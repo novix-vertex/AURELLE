@@ -1,4 +1,3 @@
-/* CSS Boilerplate */
 @font-face {
   font-family: "clagio";
   src: url("./assets/fonts/Clagio-Regular.ttf");
@@ -30,13 +29,17 @@ a {
   text-decoration: none;
 }
 
+/* Home */
+
 .home {
   min-height: 100vh;
 }
 
+/* Navbar */
+
 .navbar {
-  height: 80px;
-  padding: 0 1rem;
+  height: 5rem;
+  padding: 0 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -51,7 +54,7 @@ a {
 
 nav {
   display: flex;
-  gap: 2rem
+  gap: 2rem;
 }
 
 nav a {
@@ -78,27 +81,33 @@ nav a:hover {
   color: var(--black);
 }
 
+/* Hero */
+
 .hero {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 5rem);
+  padding: 5rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 5rem 1.5rem;
-  background: radial-gradient(circle at center,
+  background:
+    radial-gradient(circle at center,
       var(--burgundy) 0%,
       var(--black) 65%);
 }
 
 .hero-content {
-  max-width: 750px;
+  max-width: 46.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .small-title {
   color: var(--antique-gold);
   font-size: 0.75rem;
   letter-spacing: 0.3rem;
-  margin-bottom: 1.5rem;
 }
 
 .hero .title {
@@ -109,15 +118,13 @@ nav a:hover {
 }
 
 .tagline {
-  margin-top: 1.5rem;
   color: var(--champagne);
   font-size: 1.3rem;
   letter-spacing: 0.2rem;
 }
 
 .description {
-  max-width: 500px;
-  margin: 2rem auto;
+  max-width: 31.25rem;
   color: var(--taupe);
   line-height: 1.8;
   font-size: 0.95rem;
@@ -137,8 +144,14 @@ nav a:hover {
   background: var(--champagne);
 }
 
+/* Featured */
+
 .featured {
   padding: 7rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   text-align: center;
   background: var(--burgundy);
 }
@@ -146,12 +159,46 @@ nav a:hover {
 .featured .title {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 400;
-  margin-bottom: 1.5rem;
 }
 
 .featured .description {
-  max-width: 500px;
-  margin: auto;
+  max-width: 31.25rem;
+}
+
+/* Products */
+
+.products-page {
+  min-height: 100vh;
+  padding: 5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  background: var(--black);
+}
+
+.products-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+}
+
+.products-header .title {
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 400;
+}
+
+.products-header .description {
   color: var(--taupe);
   line-height: 1.8;
+}
+
+.products-list {
+  min-height: 18.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--burgundy-border);
+  color: var(--taupe);
 }

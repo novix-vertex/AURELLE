@@ -55,7 +55,6 @@ export const createProductController = async (req, res) => {
 export const getAllProductsController = async (req, res) => {
     try {
         const products = await productModel.find();
-        console.log(products);
         return res.status(200).json({
             message: "Products fetched successfully",
             data: {
