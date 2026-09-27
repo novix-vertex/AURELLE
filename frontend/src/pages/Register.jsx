@@ -99,7 +99,11 @@ const Register = () => {
                             name="email"
                             placeholder="Enter your email"
                             {...register("email", {
-                                required: "Email is required"
+                                required: "Email is required",
+                                pattern: {
+                                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                    message: "Please enter a valid email"
+                                }
                             })}
                         />
 
