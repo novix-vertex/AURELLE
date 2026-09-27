@@ -3,6 +3,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetails from "./pages/ProductDetails";
+import Register from "./pages/Register";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: "products/:id",
                 Component: ProductDetails
+            },
+            {
+                path: "register",
+                Component: Register
             }
         ]
     }
