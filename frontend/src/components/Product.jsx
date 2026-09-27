@@ -1,7 +1,10 @@
+import { Link } from "react-router"
 function Product({ product }) {
 
     return (
-        <div className="product">
+        <Link
+            to={`/products/${product._id}`}
+            className="product">
 
             {product.images.length > 0 && (
                 <img
@@ -27,7 +30,7 @@ function Product({ product }) {
 
             </div>
 
-        </div>
+        </Link>
     );
 }
 

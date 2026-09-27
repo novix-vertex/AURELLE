@@ -17,16 +17,17 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "clagio";
 }
 
 body {
-  font-family: "clagio";
   background: var(--black);
   color: var(--ivory);
 }
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 /* Home */
@@ -235,4 +236,100 @@ nav a:hover {
 .product-price {
   color: var(--champagne);
   font-size: 1rem;
+}
+
+.product-details {
+  min-height: 100vh;
+  padding: 5rem 4rem;
+  background: var(--black);
+}
+
+.product-details-content {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 4rem;
+}
+
+.product-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.product-images img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.product-information {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-top: 2rem;
+}
+
+.product-information .product-name {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+}
+
+.product-description {
+  color: var(--taupe);
+  line-height: 1.8;
+  max-width: 35rem;
+}
+
+.product-information .product-price {
+  color: var(--champagne);
+  font-size: 1.3rem;
+}
+
+.product-size,
+.product-stock {
+  color: var(--taupe);
+}
+
+.product-quantity {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.product-quantity button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--burgundy-border);
+  background: transparent;
+  color: var(--champagne);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.product-quantity button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.product-quantity span {
+  min-width: 1.5rem;
+  text-align: center;
+  color: var(--ivory);
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--antique-gold);
+  background: var(--antique-gold);
+  color: var(--black);
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background: var(--champagne);
+  border-color: var(--champagne);
 }
