@@ -1,6 +1,8 @@
 import { Link } from "react-router"
+import { useAuth } from "../context/AuthContext"
 
 const Navbar = () => {
+    const { user } = useAuth();
     return (
         <header className="navbar">
 
@@ -8,8 +10,7 @@ const Navbar = () => {
             <nav>
                 <Link to="/">Home</Link>
                 <Link to="/products">Collections</Link>
-                <Link to="/">Women</Link>
-                <Link to="/">Men</Link>
+                {user && <Link to="/profile">Profile</Link>}
             </nav>
 
             <button className="shop-now-btn">Shop Now</button>
