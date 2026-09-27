@@ -20,11 +20,6 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  width: 100%;
-}
-
 body {
   font-family: "clagio";
   background: var(--black);
@@ -82,3 +77,34 @@ nav a:hover {
   background: var(--antique-gold);
   color: var(--black);
 }
+
+.hero {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 1.5rem;
+  background: radial-gradient(circle at center,
+      var(--burgundy) 0%,
+      var(--black) 65%);
+}
+
+.hero-content {
+  max-width: 750px;
+}
+
+.small-title {
+  color: var(--antique-gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(4rem, 12vw, 9rem);
+  font-weight: 400;
+  letter-spacing: 0.25rem;
+  line-height: 1;
+}
+
