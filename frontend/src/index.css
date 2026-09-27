@@ -1,0 +1,36 @@
+/* CSS Boilerplate */
+@font-face {
+  font-family: "clagio";
+  src: url("./assets/fonts/Clagio-Regular.ttf");
+}
+
+:root {
+  --black: #0b0909;
+  --burgundy: #1a1011;
+  --ivory: #f7f2ea;
+  --champagne: #d8c7b5;
+  --antique-gold: #b89b5e;
+  --taupe: #918983;
+  --burgundy-border: #3a2928;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+body {
+  font-family: "clagio";
+  background: var(--black);
+  color: var(--ivory);
+}
+
+a {
+  text-decoration: none;
+}
