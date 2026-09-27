@@ -1,5 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { getMe, logoutUser, refreshAccessToken } from "../api/authApi";
+import { createContext, useContext, useEffect, useState } from "react"
+import { getMe, logoutUser, refreshAccessToken } from "../api/authApi"
+import toast from "react-hot-toast"
 
 const AuthContext = createContext();
 
@@ -29,7 +30,8 @@ const AuthProvider = ({ children }) => {
                 setAccessToken(accessToken);
 
             } catch (error) {
-                console.error("Auth Context Error: No Login Data", error);
+                setUser(null);
+                setAccessToken(null);
             } finally {
                 setIsLoading(false);
             }
@@ -47,7 +49,10 @@ const AuthProvider = ({ children }) => {
             setAccessToken(null);
 
         } catch (error) {
-            console.error("Logout failed Error:", error);
+            toast.error(
+                error.response?.data?.message || "Logout failed"
+            );
+
         }
     };
 
