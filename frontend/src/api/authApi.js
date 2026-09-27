@@ -11,13 +11,13 @@ export const loginUser = (userData) => {
 };
 
 export const refreshAccessToken = () => {
-    return api.post("/auth/refresh", {}, {
+    return api.get("/auth/refresh-token", {}, {
         withCredentials: true
     });
 };
 
 export const getMe = (accessToken) => {
-    return api.get("/auth/getMe", {
+    return api.get("/auth/get-me", {
         headers: {
             Authorization: `Bearer ${accessToken}`
         }
