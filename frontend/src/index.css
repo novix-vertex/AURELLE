@@ -87,19 +87,10 @@ a {
   transition: 0.3s ease;
 }
 
-.navbar-login:hover,
-.navbar-register:hover {
-  color: var(--antique-gold);
-}
-
 .navbar-profile {
   color: var(--champagne);
   font-size: 0.9rem;
   transition: 0.3s ease;
-}
-
-.navbar-profile:hover {
-  color: var(--antique-gold);
 }
 
 .navbar-logout {
@@ -111,6 +102,15 @@ a {
   font-size: 0.9rem;
   cursor: pointer;
   transition: 0.3s ease;
+}
+
+.navbar-login:hover,
+.navbar-login.active,
+.navbar-register:hover,
+.navbar-register.active,
+.navbar-profile:hover,
+.navbar-profile.active {
+  color: var(--antique-gold);
 }
 
 .navbar-logout:hover {
@@ -243,6 +243,11 @@ a {
   gap: 1rem;
   border: 1px solid var(--burgundy-border);
   padding: 1rem;
+  transition: 0.3s ease;
+}
+
+.product:hover {
+  border-color: var(--antique-gold);
 }
 
 .product-image {
@@ -302,7 +307,6 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  padding-top: 2rem;
 }
 
 .product-information .product-name {
@@ -340,6 +344,11 @@ a {
   color: var(--champagne);
   font-size: 1.2rem;
   cursor: pointer;
+}
+
+.product-quantity button:hover {
+  border-color: var(--antique-gold);
+  color: var(--antique-gold);
 }
 
 .product-quantity button:disabled {
@@ -451,19 +460,6 @@ a {
   font-size: 0.85rem;
 }
 
-.register-input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  border: 1px solid var(--burgundy-border);
-  background: var(--burgundy);
-  color: var(--ivory);
-  outline: none;
-}
-
-.register-input:focus {
-  border-color: var(--antique-gold);
-}
-
 .register-button {
   width: 100%;
   padding: 0.85rem;
@@ -553,6 +549,7 @@ a {
   font-size: 0.85rem;
 }
 
+.register-input,
 .login-input {
   width: 100%;
   padding: 0.8rem 1rem;
@@ -560,9 +557,11 @@ a {
   background: var(--burgundy);
   color: var(--ivory);
   outline: none;
+  transition: 0.3s ease;
 }
 
-.login-input:focus {
+.login-input:focus,
+.register-input:focus {
   border-color: var(--antique-gold);
 }
 
@@ -573,6 +572,12 @@ a {
   background: var(--antique-gold);
   color: var(--black);
   cursor: pointer;
+}
+
+.register-button:hover,
+.login-button:hover {
+  background: var(--champagne);
+  border-color: var(--champagne);
 }
 
 /*Profile*/

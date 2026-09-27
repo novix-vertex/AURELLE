@@ -1,10 +1,15 @@
-import { NavLink } from "react-router";
-import { useAuth } from "../context/AuthContext";
+import { NavLink, useNavigate } from "react-router"
+import { useAuth } from "../context/AuthContext"
 
 const Navbar = () => {
 
     const { user, handleLogout } = useAuth();
+    const navigate = useNavigate();
 
+    const logout = async () => {
+        await handleLogout();
+        navigate("/login");
+    }
     return (
         <header className="navbar">
 
@@ -47,7 +52,7 @@ const Navbar = () => {
 
                         <button
                             className="navbar-logout"
-                            onClick={handleLogout}
+                            onClick={logout}
                         >
                             Logout
                         </button>
