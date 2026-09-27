@@ -4,7 +4,6 @@ import { toFile } from "@imagekit/nodejs";
 
 export const createProductController = async (req, res) => {
     let product = null;
-    const uploadedImages = [];
 
     try {
         const { name, description, price, category, size, stock } = req.body;
@@ -21,19 +20,21 @@ export const createProductController = async (req, res) => {
         })
 
         const folder = `/Aurelle/products/${product._id}`;
-        for (const file of files) {
 
-            const result = await imagekit.files.upload({
-                file: await toFile(file.buffer, file.originalname),
-                fileName: "img-" + Date.now() + file.originalname,
-                folder
-            });
+        const uploadedImages = await Promise.all(
+            files.map(async (file) => {
+                const result = await imagekit.files.upload({
+                    file: await toFile(file.buffer, file.originalname),
+                    fileName: `img-${Date.now()}-${file.originalname}`,
+                    folder
+                });
 
-            uploadedImages.push({
-                url: result.url,
-                fileId: result.fileId
-            });
-        }
+                return {
+                    url: result.url,
+                    fileId: result.fileId
+                };
+            })
+        );
 
         const updatedProduct = await productModel.findByIdAndUpdate(product._id, { images: uploadedImages }, { returnDocument: "after" });
 
@@ -101,8 +102,6 @@ export const getProductByIdController = async (req, res) => {
 }
 
 export const updateProductByIdController = async (req, res) => {
-    let uploadedImages = [];
-
     try {
         const { id } = req.params;
 
@@ -120,29 +119,30 @@ export const updateProductByIdController = async (req, res) => {
         if (files.length > 0) {
             const folder = `/Aurelle/products/${product._id}`;
 
-            for (const file of files) {
-                const result = await imagekit.files.upload({
-                    file: await toFile(
-                        file.buffer,
-                        file.originalname
-                    ),
-                    fileName: "img-" + Date.now() + file.originalname,
-                    folder
-                });
+            const uploadedImages = await Promise.all(
+                files.map(async (file) => {
+                    const result = await imagekit.files.upload({
+                        file: await toFile(file.buffer, file.originalname),
+                        fileName: `img-${Date.now()}-${file.originalname}`,
+                        folder
+                    });
 
-                uploadedImages.push({
-                    url: result.url,
-                    fileId: result.fileId
-                });
-            }
+                    return {
+                        url: result.url,
+                        fileId: result.fileId
+                    };
+                })
+            );
 
-            for (const image of product.images) {
-                try {
-                    await imagekit.files.delete(image.fileId);
-                } catch (error) {
-                    console.error(error.message);
-                }
-            }
+            await Promise.all(
+                product.images.map(async (image) => {
+                    try {
+                        await imagekit.files.delete(image.fileId);
+                    } catch (error) {
+                        console.error(error.message);
+                    }
+                })
+            );
             product.images = uploadedImages;
 
         }
