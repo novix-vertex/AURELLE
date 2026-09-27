@@ -9,3 +9,17 @@ export const loginUser = (userData) => {
         withCredentials: true
     });
 };
+
+export const refreshAccessToken = () => {
+    return api.post("/auth/refresh", {}, {
+        withCredentials: true
+    });
+};
+
+export const getMe = (accessToken) => {
+    return api.get("/auth/getMe", {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    });
+};
