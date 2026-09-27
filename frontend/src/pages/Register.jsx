@@ -14,7 +14,9 @@ const Register = () => {
             navigate("/login");
         } catch (error) {
             toast.error(
-                error.response?.data?.message || "Registration failed"
+                error.response?.data?.errors?.[0]?.message ||
+                error.response?.data?.message ||
+                "Registration failed"
             );
         }
     };
