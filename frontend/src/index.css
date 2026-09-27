@@ -40,44 +40,80 @@ a {
 
 .navbar {
   height: 5rem;
-  padding: 0 4rem;
+  padding: 0 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid var(--burgundy-border);
+  background: var(--black);
 }
 
-.logo {
+.navbar-logo {
+  color: var(--ivory);
   font-size: 1.6rem;
   letter-spacing: 0.2rem;
-  color: var(--ivory);
 }
 
-nav {
+.navbar-links {
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
-nav a {
+.navbar-link {
   color: var(--champagne);
   font-size: 0.9rem;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
-nav a:hover {
+.navbar-link:hover {
   color: var(--antique-gold);
 }
 
-.shop-now-btn {
+.navbar-link.active {
+  color: var(--antique-gold);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-login,
+.navbar-register {
+  color: var(--champagne);
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.navbar-login:hover,
+.navbar-register:hover {
+  color: var(--antique-gold);
+}
+
+.navbar-profile {
+  color: var(--champagne);
+  font-size: 0.9rem;
+  transition: 0.3s ease;
+}
+
+.navbar-profile:hover {
+  color: var(--antique-gold);
+}
+
+.navbar-logout {
   padding: 0.7rem 1.3rem;
-  background: transparent;
   border: 1px solid var(--antique-gold);
+  background: transparent;
   color: var(--antique-gold);
+  font-family: inherit;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: 0.3s ease;
 }
 
-.shop-now-btn:hover {
+.navbar-logout:hover {
   background: var(--antique-gold);
   color: var(--black);
 }
@@ -587,33 +623,18 @@ nav a:hover {
   background: var(--burgundy-border);
 }
 
-.profile-logout {
-  padding: 0.8rem 2rem;
-  border: 1px solid var(--antique-gold);
-  background: transparent;
-  color: var(--antique-gold);
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.profile-logout:hover {
-  background: var(--antique-gold);
-  color: var(--black);
-}
-
 /*Loading*/
 
 .loading {
-    min-height: 60vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  min-height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loading-text {
-    color: var(--antique-gold);
-    font-size: 1rem;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
+  color: var(--antique-gold);
+  font-size: 1rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
 }

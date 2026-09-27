@@ -1,15 +1,8 @@
-import { useNavigate } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
 const Profile = () => {
 
-    const { user, handleLogout } = useAuth();
-    const navigate = useNavigate();
-
-    const logout = async () => {
-        await handleLogout();
-        navigate("/login");
-    };
+    const { user} = useAuth();
 
     return (
         <div className="profile-page">
@@ -29,13 +22,6 @@ const Profile = () => {
                 <p className="profile-email">
                     {user.email}
                 </p>
-
-                <button
-                    className="profile-logout"
-                    onClick={logout}
-                >
-                    Logout
-                </button>
 
             </div>
 
