@@ -195,10 +195,44 @@ nav a:hover {
 }
 
 .products-list {
-  min-height: 18.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.product {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
   border: 1px solid var(--burgundy-border);
-  color: var(--taupe);
+  padding: 1rem;
+}
+
+.product-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-category {
+  color: var(--antique-gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.product-price {
+  color: var(--champagne);
+  font-size: 1rem;
 }

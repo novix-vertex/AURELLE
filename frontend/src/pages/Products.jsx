@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { getProducts } from "../api/productApi"
+import Product from "../components/Product";
 
 function Products() {
     const [products, setProducts] = useState([]);
@@ -39,9 +40,12 @@ function Products() {
 
             <div className="products-list">
 
-                <p>
-                    {products?.length} products found.
-                </p>
+                {products.map((product) => (
+                    <Product
+                        key={product._id}
+                        product={product}
+                    />
+                ))}
             </div>
 
         </div>

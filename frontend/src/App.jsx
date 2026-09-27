@@ -1,8 +1,12 @@
 import { Outlet } from "react-router"
+import Navbar from "../src/components/Navbar"
 
 const App = () => {
     return (
-        <Outlet />
+        <>
+            <Navbar />
+            <Outlet />
+        </>
     )
 }
 
