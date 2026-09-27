@@ -101,7 +101,7 @@ nav a:hover {
   margin-bottom: 1.5rem;
 }
 
-.hero h1 {
+.hero .title {
   font-size: clamp(4rem, 12vw, 9rem);
   font-weight: 400;
   letter-spacing: 0.25rem;
@@ -135,4 +135,23 @@ nav a:hover {
 
 .explore-btn:hover {
   background: var(--champagne);
+}
+
+.featured {
+  padding: 7rem 1.5rem;
+  text-align: center;
+  background: var(--burgundy);
+}
+
+.featured .title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.featured .description {
+  max-width: 500px;
+  margin: auto;
+  color: var(--taupe);
+  line-height: 1.8;
 }
