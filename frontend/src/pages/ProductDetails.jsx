@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 import { useParams } from "react-router"
-import { getProduct } from "../api/productApi";
+import { getProduct } from "../api/productApi"
+import toast from "react-hot-toast"
 
 const ProductDetails = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -14,11 +16,26 @@ const ProductDetails = () => {
                 console.log(response.data.data);
                 setProduct(response.data.data.product);
             } catch (error) {
-                console.error(error);
+                toast.error(
+                    error.response?.data?.message || "Failed to load product data"
+                );
+            } finally {
+                setIsLoading(false);
             }
         }
         fetchProduct();
     }, [id]);
+
+    if (isLoading) {
+        return (
+            <div className="loading">
+                <span className="loading-text">
+                    Loading...
+                </span>
+            </div>
+        );
+    }
+
     return (
         <div className="product-details">
             {product && (

@@ -14,9 +14,9 @@ const Products = () => {
                 setProducts(response.data.data.products);
 
             } catch (error) {
-                 toast.error(
-            error.response?.data?.message || "Failed to load products"
-        );
+                toast.error(
+                    error.response?.data?.message || "Failed to load products"
+                );
             } finally {
                 setIsLoading(false);
             }
