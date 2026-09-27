@@ -1,15 +1,18 @@
 import { useForm } from "react-hook-form"
 import toast from "react-hot-toast"
 import { loginUser } from "../api/authApi"
+import { useAuth } from "../context/AuthContext";
 const Login = () => {
-
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { handleLogin } = useAuth();
 
     const onSubmit = async (data) => {
         try {
             const response = await loginUser(data);
-
-            console.log(response.data);
+            console.log("Login Response", response.data);
+            const { accessToken } = response.data;
+            const { user } = response.data.data;
+            handleLogin(user, accessToken);
 
             toast.success("Login successful");
         } catch (error) {
