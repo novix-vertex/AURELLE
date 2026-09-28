@@ -6,6 +6,7 @@ import mongoose from "mongoose"
     "email": "chirag@test.com",
     "passwordHash": "",
     "refreshTokenHash": null,
+    "role":"user"
     "createdAt": "",
     "updatedAt": ""
     }
@@ -29,6 +30,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: null,
         select: false
+    },
+    role: {
+        type: String,
+        enum: ["user", "seller"],
+        default: "user"
     }
 },
     {

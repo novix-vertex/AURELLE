@@ -18,6 +18,7 @@ import mongoose from "mongoose"
             "fileId": ""
         }
     ],
+    "isActive":true,
     "createdAt": "",
     "updatedAt": ""
 }
@@ -48,18 +49,22 @@ const productSchema = new mongoose.Schema({
         required: true,
         default: 0
     },
-    images:[
+    images: [
         {
-            url:{
-                type:String,
-                default:""
+            url: {
+                type: String,
+                default: ""
             },
-            fileId:{
-                type:String,
-                default:""
+            fileId: {
+                type: String,
+                default: ""
             }
         }
-    ]
+    ],
+    isActive: {
+        type: Boolean,
+        default: true
+    }
 }, {
     timestamps: true
 });
