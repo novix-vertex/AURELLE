@@ -40,7 +40,11 @@ const Navbar = () => {
             </nav>
 
             <div className="navbar-actions">
-
+                {user?.role === "seller" && (
+                    <NavLink to="/seller/products">
+                        Manage Products
+                    </NavLink>
+                )}
                 {user ? (
                     <>
                         <NavLink
