@@ -8,12 +8,17 @@ const ProductDetails = () => {
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
                 const response = await getProduct(id);
-                setProduct(response.data.data.product);
+                const productData = response.data.data.product;
+                setProduct(productData);
+                if (productData.images?.length > 0) {
+                    setSelectedImage(productData.images[0].url);
+                }
             } catch (error) {
                 toast.error(
                     error.response?.data?.message || "Failed to load product data"
@@ -42,13 +47,29 @@ const ProductDetails = () => {
 
                     <div className="product-images">
 
-                        {product.images.map((image) => (
+                        <div className="product-thumbnails">
+
+                            {product.images.map((image) => (
+                                <button
+                                    className={`product-thumbnail ${selectedImage === image.url ? "active" : ""}`}
+                                    key={image.fileId}
+                                    onClick={() => setSelectedImage(image.url)}
+                                >
+                                    <img
+                                        src={`${image.url}?tr=w-150,h-150`}
+                                        alt={product.name}
+                                    />
+                                </button>
+                            ))}
+
+                        </div>
+                        <div className="product-main-image">
                             <img
-                                key={image.fileId}
-                                src={image.url}
+                                src={selectedImage || product.images[0]?.url}
                                 alt={product.name}
                             />
-                        ))}
+                        </div>
+
 
                     </div>
 
