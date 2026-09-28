@@ -2,7 +2,7 @@ import express from "express"
 import { createProductController, deleteProductByIdController, getAllProductsController, getProductByIdController, getSellerProductsController, updateProductByIdController, updateProductStatusController } from "../controllers/product.controller.js";
 import { authenticateUser, authorizeSeller } from "../middlewares/auth.middleware.js";
 import upload from "../middlewares/multer.middleware.js"
-import { productIdValidator, productValidator } from "../validators/product.validators.js";
+import { productIdValidator, productStatusValidator, productValidator } from "../validators/product.validators.js";
 import validate from "../middlewares/validation.middleware.js";
 const productRouter = express.Router();
 
