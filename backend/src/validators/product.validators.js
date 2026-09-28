@@ -27,8 +27,13 @@ export const productValidator = [
 ];
 
 export const productIdValidator = [
-
     param("id")
         .trim()
         .isMongoId().withMessage("Invaid product id")
+];
+
+export const productStatusValidator = [
+    body("isActive")
+        .notEmpty().withMessage("isActive is required").bail()
+        .isBoolean().withMessage("isActive must be true or false")
 ];

@@ -12,6 +12,6 @@ productRouter.get("/", getAllProductsController);
 productRouter.get("/:id", productIdValidator, validate, getProductByIdController);
 productRouter.put("/:id", authenticateUser, authorizeSeller, upload.array("images", 5), productIdValidator, productValidator, validate, updateProductByIdController);
 productRouter.delete("/:id", authenticateUser, authorizeSeller, productIdValidator, validate, deleteProductByIdController);
-productRouter.patch("/:id/status", authenticateUser, authorizeSeller, productIdValidator, validate, updateProductStatusController);
+productRouter.patch("/:id/status", authenticateUser, authorizeSeller, productIdValidator, productStatusValidator, validate, updateProductStatusController);
 
 export default productRouter    
