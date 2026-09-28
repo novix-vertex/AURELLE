@@ -55,7 +55,9 @@ export const createProductController = async (req, res) => {
 
 export const getAllProductsController = async (req, res) => {
     try {
-        const products = await productModel.find();
+        const products = await productModel.find({
+            isActive: true
+        });
         return res.status(200).json({
             message: "Products fetched successfully",
             data: {
@@ -69,6 +71,25 @@ export const getAllProductsController = async (req, res) => {
         })
     }
 }
+
+export const getSellerProductsController = async (req, res) => {
+    try {
+        const products = await productModel.find();
+
+        return res.status(200).json({
+            success: true,
+            data: {
+                products
+            }
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch seller products"
+        });
+    }
+};
 
 export const getProductByIdController = async (req, res) => {
     try {

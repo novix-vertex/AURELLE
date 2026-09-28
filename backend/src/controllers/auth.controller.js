@@ -28,7 +28,8 @@ export const registerController = async (req, res) => {
                 user: {
                     id: user._id,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 }
             }
         })
@@ -60,7 +61,7 @@ export const loginController = async (req, res) => {
             });
         }
 
-        const accessToken = generateAccessToken(user._id);
+        const accessToken = generateAccessToken(user._id, user.role);
         const refreshToken = genereateRefreshToken(user._id);
         const refreshTokenHash = await hashRefreshToken(refreshToken);
 
@@ -79,7 +80,8 @@ export const loginController = async (req, res) => {
                 user: {
                     id: user._id,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 }
             }
         })
@@ -107,7 +109,8 @@ export const getMeController = async (req, res) => {
                 user: {
                     id: user._id,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    role: user.role
                 }
             }
         })
@@ -147,7 +150,7 @@ export const refreshTokenController = async (req, res) => {
             });
         }
 
-        const newAccessToken = generateAccessToken(user._id);
+        const newAccessToken = generateAccessToken(user._id, user.role);
         const refreshToken = genereateRefreshToken(user._id);
         const refreshTokenHash = await hashRefreshToken(refreshToken);
 

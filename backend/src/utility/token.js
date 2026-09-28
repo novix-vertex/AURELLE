@@ -2,10 +2,13 @@ import jwt from "jsonwebtoken"
 import { config } from "../config/config.js"
 import bcrypt from "bcryptjs";
 
-export const generateAccessToken = (id) => {
+export const generateAccessToken = (id, role) => {
 
     return jwt.sign(
-        { id },
+        {
+            id,
+            role
+        },
         config.ACCESS_TOKEN_SECRET,
         {
             expiresIn: config.ACCESS_TOKEN_EXPIRES_IN + config.ACCESS_TOKEN_EXPIRES_UNIT

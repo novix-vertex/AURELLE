@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import { config } from "../config/config.js"
 
-const authenticateUser = (req, res, next) => {
+export const authenticateUser = (req, res, next) => {
 
     try {
 
@@ -37,4 +37,13 @@ const authenticateUser = (req, res, next) => {
     }
 }
 
-export default authenticateUser
+export const authorizeSeller = (req, res, next) => {
+    if (req.user.role !== "seller") {
+        return res.status(403).json({
+            message: "Seller access required"
+        });
+    }
+
+    next();
+};
+
