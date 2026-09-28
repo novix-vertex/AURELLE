@@ -223,3 +223,38 @@ export const deleteProductByIdController = async (req, res) => {
         })
     }
 }
+
+export const updateProductStatusController = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { isActive } = req.body;
+
+        const product = await productModel.findByIdAndUpdate(
+            id,
+            { isActive },
+            {
+                returnDocument: "after"
+            }
+        );
+
+        if (!product) {
+            return res.status(404).json({
+                message: "Product not found"
+            });
+        }
+
+        return res.status(200).json({
+            message: `Product ${isActive ? "activated" : "deactivated"} successfully`,
+            data: {
+                product
+            }
+        });
+
+    } catch (error) {
+        console.error("Update Product Status Error:", error);
+
+        return res.status(500).json({
+            message: error.message
+        });
+    }
+};
