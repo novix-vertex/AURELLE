@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import SellerProducts from "./pages/SellerProducts";
+import ProductForm from "./components/ProductForm";
 
 const router = createBrowserRouter([
     {
@@ -46,6 +47,14 @@ const router = createBrowserRouter([
             {
                 path: "/seller/products",
                 element: <SellerProducts />
+            },
+            {
+                path: "/seller/products/add",
+                element: <ProductForm />
+            },
+            {
+                path: "/seller/products/edit/:id",
+                element: <ProductForm />
             }
 
         ]

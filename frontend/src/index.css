@@ -343,6 +343,7 @@ a {
   object-fit: cover;
   display: block;
 }
+
 .product-information {
   display: flex;
   flex-direction: column;
@@ -698,7 +699,7 @@ a {
 
 .seller-product {
   display: grid;
-  grid-template-columns: 6rem 1fr auto auto;
+  grid-template-columns: 6rem 1fr auto auto auto;
   align-items: center;
   gap: 1.5rem;
 
@@ -737,4 +738,155 @@ a {
 .seller-product button:hover {
   background: var(--antique-gold);
   color: var(--black);
+}
+
+
+/* Product Form */
+
+.product-form-page {
+  min-height: calc(100vh - 5rem);
+  max-width: 65rem;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.product-form-header {
+  margin-bottom: 2.5rem;
+}
+
+.product-form-small-title {
+  margin-bottom: 0.8rem;
+  color: var(--antique-gold);
+  font-size: 0.75rem;
+  letter-spacing: 0.25rem;
+}
+
+.product-form-header h1 {
+  margin-bottom: 0.8rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 400;
+}
+
+.product-form-description {
+  color: var(--taupe);
+  line-height: 1.6;
+}
+
+.product-form {
+  padding: 2.5rem;
+  border: 1px solid var(--burgundy-border);
+  background: var(--burgundy);
+}
+
+.product-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.product-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.product-form-group label {
+  color: var(--champagne);
+  font-size: 0.85rem;
+}
+
+.product-form-group input,
+.product-form-group textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+
+  border: 1px solid var(--burgundy-border);
+  background: var(--black);
+  color: var(--ivory);
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+
+  transition: 0.3s ease;
+}
+
+.product-form-group input:focus,
+.product-form-group textarea:focus {
+  border-color: var(--antique-gold);
+}
+
+.product-form-group textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.product-form-description-group {
+  margin-top: 1.5rem;
+}
+
+.product-form-error {
+  color: var(--antique-gold);
+  font-size: 0.75rem;
+}
+
+.product-form-button {
+  margin-top: 2rem;
+  padding: 0.9rem 2rem;
+
+  border: 1px solid var(--antique-gold);
+  background: var(--antique-gold);
+  color: var(--black);
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.product-form-button:hover {
+  background: var(--champagne);
+  border-color: var(--champagne);
+}
+
+.seller-add-product {
+  margin-bottom: 2rem;
+  padding: 0.8rem 1.5rem;
+
+  border: 1px solid var(--antique-gold);
+  background: var(--antique-gold);
+  color: var(--black);
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.seller-add-product:hover {
+  background: var(--champagne);
+  border-color: var(--champagne);
+}
+
+.product-form-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+.product-form-existing-images {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-form-existing-images img {
+  width: 5rem;
+  height: 6rem;
+  object-fit: cover;
+  border: 1px solid var(--burgundy-border);
 }

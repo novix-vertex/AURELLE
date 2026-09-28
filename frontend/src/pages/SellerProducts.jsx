@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 import toast from "react-hot-toast"
 import { useAuth } from "../context/AuthContext"
 import { getSellerProducts, updateProductStatus, deleteProduct } from "../api/productApi"
@@ -7,6 +8,7 @@ const SellerProducts = () => {
     const { accessToken, isLoading: authLoading } = useAuth();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (authLoading || !accessToken) {
@@ -84,7 +86,12 @@ const SellerProducts = () => {
     return (
         <div className="seller-products">
             <h1>Manage Products</h1>
-
+            <button
+                className="seller-add-product"
+                onClick={() => navigate("/seller/products/add")}
+            >
+                Add Product
+            </button>
             {products.map((product) => (
                 <div
                     className="seller-product"
@@ -111,7 +118,11 @@ const SellerProducts = () => {
                     >
                         {product.isActive ? "Deactivate" : "Activate"}
                     </button>
-
+                    <button
+                        onClick={() => navigate(`/seller/products/edit/${product._id}`)}
+                    >
+                        Edit
+                    </button>
                     <button
                         onClick={
                             () => handleDelete(product._id)

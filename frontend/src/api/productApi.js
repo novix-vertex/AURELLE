@@ -35,3 +35,19 @@ export const deleteProduct = (id, accessToken) => {
         }
     });
 };
+
+export const createProduct = (productData, accessToken) => {
+    return api.post("/products", productData, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    });
+};
+
+export const updateProduct = (id, productData, accessToken) => {
+    return api.put(`/products/${id}`, productData, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    });
+};
